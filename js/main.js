@@ -8,6 +8,9 @@ var KeypadHandler = function(input) {
 };
 
 KeypadHandler.prototype.createGuard = function(num) {
+    
+    this.input.className += "guarded";
+    
     this.guard = document.createElement("div");
     this.guard.style.position = "absolute";    
     this.guard.style.left = 0;
@@ -101,7 +104,8 @@ KeypadHandler.prototype.addListener = function(listener) {
     this.listeners.push(listener);
 };
 
-var listener = {numberPressed: function(number) {console.log(number);}};
-
-var kph = new KeypadHandler(document.getElementById("textfield"));
-kph.addListener(listener);
+function attachKeypadHandler() {
+    var listener = {numberPressed: function(number) {console.log(number);}};
+    var kph = new KeypadHandler(document.getElementById("textfield"));
+    kph.addListener(listener);
+}
