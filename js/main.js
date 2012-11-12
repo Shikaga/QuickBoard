@@ -3,41 +3,65 @@ var KeypadHandler = function(input) {
     this.input = input;
     this.listeners = [];
     
-    this.keypad = document.createElement("div");
-    this.keypad.style.width = "150px";
-    this.keypad.style.left = input.offsetWidth;
-    this.keypad.style.top = "0";
-    this.keypad.style.position = "absolute";
-    input.parentElement.appendChild(this.keypad);
+    this.createKeypad();    
+};
+
+KeypadHandler.prototype.createKeypad = function(num) {
+    this.keypadParent = document.createElement("div");
+    this.keypadParent.className = "keypadParent";
+    this.keypadParent.style.left = this.input.offsetWidth + 20;
+    this.keypadParent.style.top = -50;
+    this.keypadParent.style.position = "absolute";
     
-    //document.getElementById("quickbar");
+    this.keypad = document.createElement("div");
+    this.keypad.className = "keypad";
+    
+    this.keypadCommand  = document.createElement("div");
+    this.keypadCommand.className = "keypadCommand";
+    
     this.addNumbers();
+    
+    
+    this.input.parentElement.appendChild(this.keypadParent);
+    this.keypadParent.appendChild(this.keypad);
+    this.keypadParent.appendChild(this.keypadCommand);
 };
 
-KeypadHandler.prototype.addNumbers = function(num) {
-    this.addNumber(7);
-    this.addNumber(8);
-    this.addNumber(9);
-    this.addNumber(4);
-    this.addNumber(5);
-    this.addNumber(6);
-    this.addNumber(1);
-    this.addNumber(2);
-    this.addNumber(3);
-    this.addNumber(0);
+KeypadHandler.prototype.addNumbers = function() {
+    this.addButton(7);
+    this.addButton(8);
+    this.addButton(9);
+    this.addButton("M");
+    this.addButton(4);
+    this.addButton(5);
+    this.addButton(6);
+    this.addButton("K");
+    this.addButton(1);
+    this.addButton(2);
+    this.addButton(3);
+    this.addButton("Enter");
+    this.addButton(0);
+    this.addButton(".");
 };
 
-KeypadHandler.prototype.addNumber = function(num) {
+KeypadHandler.prototype.addButton = function(num) {
     var number = document.createElement("div");
     number.className = "number";
     if (num === 0) {
-        number.className = "number zero";
+        number.className = "number horizontal";
+    }
+    if (num === "Enter") {
+        number.className = "number vertical";
     }
     var self = this;
     number.handler = this;
     number.onclick = self.numberPressed;
     number.innerHTML = num;
-    this.keypad.appendChild(number);
+    if (num === "Enter" || num === "M" || num === "K") {
+        this.keypadCommand.appendChild(number);
+    } else {
+        this.keypad.appendChild(number);
+    }
 };
 
 KeypadHandler.prototype.numberPressed = function() {

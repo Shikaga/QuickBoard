@@ -29,9 +29,31 @@ body {
     float: left;
 }
 
-.number.zero {
+.number.horizontal {
     width: 96px;
 
+}
+
+.number.vertical {
+    height: 96px;
+}
+
+.keypadParent {
+    background-color:grey;
+    border-radius: 2px;
+    width: 200px;
+}
+
+.keypad {
+    float:left;
+    width: 150px;
+    height: 200px;
+}
+
+.keypadCommand {
+    float: left;
+    width: 50px;
+    height: 200px;
 }
 
 #quickbar {
