@@ -3,12 +3,32 @@ var KeypadHandler = function(input) {
     this.input = input;
     this.listeners = [];
     
+    this.createGuard();
     this.createKeypad();    
+};
+
+KeypadHandler.prototype.createGuard = function(num) {
+    this.guard = document.createElement("div");
+    this.guard.style.position = "absolute";    
+    this.guard.style.left = 0;
+    this.guard.style.width = this.input.offsetWidth+4;
+    this.guard.style.height = this.input.offsetHeight+4;
+    this.guard.style.top = 0;
+    this.guard.style.zIndex = 1;
+    this.guard.handler = this;
+    var self = this;
+    this.guard.onclick = self.guardClicked;
+    this.input.parentElement.appendChild(this.guard);
+};
+
+KeypadHandler.prototype.guardClicked = function(num) {
+    this.handler.keypadParent.style.display = "block";
 };
 
 KeypadHandler.prototype.createKeypad = function(num) {
     this.keypadParent = document.createElement("div");
     this.keypadParent.className = "keypadParent";
+    this.keypadParent.style.display = "none";
     this.keypadParent.style.left = this.input.offsetWidth + 20;
     this.keypadParent.style.top = -50;
     this.keypadParent.style.position = "absolute";
@@ -68,6 +88,12 @@ KeypadHandler.prototype.numberPressed = function() {
     var number = this.innerHTML;
     for (var i=0; i < this.handler.listeners.length; i++) {
         this.handler.listeners[i].numberPressed(number);
+    }
+    
+    if (number == "Enter") {
+        this.handler.keypadParent.style.display = "none";
+    } else {
+        this.handler.input.value += number;
     }
 };
 
