@@ -1,5 +1,30 @@
-var KeypadHandler = function() {
+var KeypadHandler = function(input) {
+    
+    this.input = input;
     this.listeners = [];
+    
+    this.keypad = document.createElement("div");
+    this.keypad.style.width = "150px";
+    this.keypad.style.left = input.offsetWidth;
+    this.keypad.style.top = "0";
+    this.keypad.style.position = "absolute";
+    input.parentElement.appendChild(this.keypad);
+    
+    //document.getElementById("quickbar");
+    this.addNumbers();
+};
+
+KeypadHandler.prototype.addNumbers = function(num) {
+    this.addNumber(7);
+    this.addNumber(8);
+    this.addNumber(9);
+    this.addNumber(4);
+    this.addNumber(5);
+    this.addNumber(6);
+    this.addNumber(1);
+    this.addNumber(2);
+    this.addNumber(3);
+    this.addNumber(0);
 };
 
 KeypadHandler.prototype.addNumber = function(num) {
@@ -12,7 +37,7 @@ KeypadHandler.prototype.addNumber = function(num) {
     number.handler = this;
     number.onclick = self.numberPressed;
     number.innerHTML = num;
-    document.getElementById("quickbar").appendChild(number);
+    this.keypad.appendChild(number);
 };
 
 KeypadHandler.prototype.numberPressed = function() {
@@ -28,16 +53,5 @@ KeypadHandler.prototype.addListener = function(listener) {
 
 var listener = {numberPressed: function(number) {console.log(number);}};
 
-var kph = new KeypadHandler();
+var kph = new KeypadHandler(document.getElementById("textfield"));
 kph.addListener(listener);
-
-kph.addNumber(7);
-kph.addNumber(8);
-kph.addNumber(9);
-kph.addNumber(4);
-kph.addNumber(5);
-kph.addNumber(6);
-kph.addNumber(1);
-kph.addNumber(2);
-kph.addNumber(3);
-kph.addNumber(0);
