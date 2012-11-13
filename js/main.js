@@ -26,6 +26,7 @@ KeypadHandler.prototype.createGuard = function(num) {
 
 KeypadHandler.prototype.guardClicked = function(num) {
     this.handler.keypadParent.style.display = "block";
+	this.handler.input.value = "";
 };
 
 KeypadHandler.prototype.createKeypad = function(num) {
@@ -78,7 +79,7 @@ KeypadHandler.prototype.addButton = function(num) {
     }
     var self = this;
     number.handler = this;
-    number.onclick = self.numberPressed;
+    number.addEventListener('touchend',self.numberPressed, false);
     number.innerHTML = num;
     if (num === "Enter" || num === "M" || num === "K") {
         this.keypadCommand.appendChild(number);
