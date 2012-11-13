@@ -33,7 +33,7 @@ KeypadHandler.prototype.createKeypad = function(num) {
     this.keypadParent.className = "keypadParent";
     this.keypadParent.style.display = "none";
     this.keypadParent.style.left = this.input.offsetWidth + 20;
-    this.keypadParent.style.top = -50;
+    this.keypadParent.style.top = -150;
     this.keypadParent.style.position = "absolute";
     
     this.keypad = document.createElement("div");

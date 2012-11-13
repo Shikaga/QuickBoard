@@ -27,14 +27,14 @@ body {
 
 .number {
     vertical-align: middle;
-    line-height: 40px;
+    line-height: 92px;
     text-align: center;
     border-radius: 2px;
     color: #EEE;
     background-color: #333;
-    width: 46px;
-    height: 46px;
-    margin: 2px;
+    width: 92px;
+    height: 92px;
+    margin: 4px;
     float: left;
 
     -webkit-touch-callout: none;
@@ -46,34 +46,34 @@ body {
 }
 
 .number.horizontal {
-    width: 96px;
+    width: 192px;
 
 }
 
 .number.vertical {
-    height: 96px;
+    height: 192px;
 }
 
 .keypadParent {
     background-color:grey;
     border-radius: 2px;
-    width: 200px;
+    width: 400px;
 }
 
 .keypad {
     float:left;
-    width: 150px;
-    height: 200px;
+    width: 300px;
+    height: 400px;
 }
 
 .keypadCommand {
     float: left;
-    width: 50px;
-    height: 200px;
+    width: 100px;
+    height: 400px;
 }
 
 #quickbar {
-    width: 150px;
+    width: 300px;
 }
 
 a.testbar:link,a.testbar:visited,a.testbar:hover,a.testbar:active
